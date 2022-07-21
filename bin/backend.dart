@@ -3,9 +3,11 @@
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as io;
 
+import 'serverHandler.dart';
+
 void main() async {
-  final server =
-      await io.serve((request) => Response(200, body: 'ok'), 'localhost', 2612);
+  var _server = new Serverhandler();
+  final server = await io.serve(_server.handler, 'localhost', 2612);
 
   print('Server listening on http://${server.address.host}:${server.port}');
 }
